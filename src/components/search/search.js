@@ -4,7 +4,6 @@ import axios from "axios";
 export const Search = () => {
   const [query, setQuery] = useState("");
   const [results, setResults] = useState([]);
-  console.log(results);
 
   useEffect(() => {
     const search = async () => {
@@ -23,7 +22,7 @@ export const Search = () => {
   }, [query]);
 
   return (
-    <div>
+    <div className="ui segment" style={{ padding: 15 }}>
       <div className="ui fluid icon input">
         <input
           type="text"
@@ -35,7 +34,7 @@ export const Search = () => {
         />
         <i className="search icon"></i>
       </div>
-      <div className="sixteen wide column">
+      <div className="sixteen wide column" style={{ paddingTop: 10 }}>
         {results?.map((item) => {
           return <List item={item} key={item.pageid} />;
         })}
@@ -48,10 +47,20 @@ export default Search;
 
 const List = ({ item }) => {
   return (
-    <div className="ui relaxed divided list">
+    <div className="ui middle aligned divided list">
       <div className="item">
+        <div className="right floated content">
+          <div className="ui button">
+            <a
+              href={`https://en.wikipedia.org?curid=${item.pageid}`}
+              target="_blank"
+            >
+              Go
+            </a>
+          </div>
+        </div>
         <div className="content">
-          <span className="header">{item.snippet}</span>
+          <span dangerouslySetInnerHTML={{ __html: item.snippet }}></span>
         </div>
       </div>
     </div>

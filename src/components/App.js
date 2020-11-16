@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Search } from "./index";
+import { Search, Hangman } from "./index";
+import "../assets/global-styles.css";
 
 const App = () => {
   return (
     <div>
-      <p>Search something</p>
-      <Search />
+      <h4>Welcome Mini-Apps</h4>
+      <Hangman />
     </div>
   );
 };
